@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Надежда и Мирослава | Творческая семья</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Nunito:wght@400;600;700;800&family=Philosopher:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #fffaf3;
+            --peach: #fde4d0;
+            --blush: #f8d5d5;
+            --rose: #e8b4b8;
+            --gold: #d4a574;
+            --warm-brown: #5c3d2e;
+            --soft-pink: #fce4ec;
+            --lavender: #f3e5f5;
+            --mint: #e8f5e9;
+            --card-bg: rgba(255, 248, 240, 0.85);
+            --text-dark: #4a3028;
+            --text-medium: #6b4d3a;
+            --text-light: #8c6b58;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(170deg, #fef7f0 0%, #fceee4 25%, #fef5f0 50%, #fdf2e8 75%, #fff8f3 100%);
+            background-attachment: fixed;
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* ─── Кружевная рамка по краям страницы ─── */
+        .lace-border {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .lace-border::before,
+        .lace-border::after,
+        .lace-border .lace-top,
+        .lace-border .lace-bottom,
+        .lace-border .lace-left,
+        .lace-border .lace-right {
+            position: absolute;
+            content: '';
+            pointer-events: none;
+        }
+
+        .lace-border .lace-top {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 42px;
+            background:
+                radial-gradient(circle at 20px 22px, transparent 13px, #f3d5c4 14px, #f3d5c4 16px, transparent 17px) repeat-x 0 0 / 44px 42px,
+                radial-gradient(circle at 20px 22px, transparent 11px, #fbe9dd 12px, #fbe9dd 14px, transparent 15px) repeat-x 22px 0 / 44px 42px;
+            background-color: transparent;
+            z-index: 2;
+        }
+
+        .lace-border .lace-bottom {
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 42px;
+            background:
+                radial-gradient(circle at 20px 20px, transparent 13px, #f3d5c4 14px, #f3d5c4 16px, transparent 17px) repeat-x 0 0 / 44px 42px,
+                radial-gradient(circle at 20px 20px, transparent 11px, #fbe9dd 12px, #fbe9dd 14px, transparent 15px) repeat-x 22px 0 / 44px 42px;
+            z-index: 2;
+        }
+
+        .lace-border .lace-left {
+            top: 42px;
+            left: 0;
+            width: 38px;
+            height: calc(100% - 84px);
+            background:
+                radial-gradient(circle at 20px 22px, transparent 12px, #f3d5c4 13px, #f3d5c4 15px, transparent 16px) repeat-y 0 0 / 38px 44px,
+                radial-gradient(circle at 20px 22px, transparent 10px, #fbe9dd 11px, #fbe9dd 13px, transparent 14px) repeat-y 0 22px / 38px 44px;
+            z-index: 2;
+        }
+
+        .lace-border .lace-right {
+            top: 42px;
+            right: 0;
+            width: 38px;
+            height: calc(100% - 84px);
+            background:
+                radial-gradient(circle at 18px 22px, transparent 12px, #f3d5c4 13px, #f3d5c4 15px, transparent 16px) repeat-y 0 0 / 38px 44px,
+                radial-gradient(circle at 18px 22px, transparent 10px, #fbe9dd 11px, #fbe9dd 13px, transparent 14px) repeat-y 0 22px / 38px 44px;
+            z-index: 2;
+        }
+
+        .lace-corner {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        .lace-corner::before {
+            content: '🌸';
+            font-size: 28px;
+            position: absolute;
+            opacity: 0.7;
+        }
+        .corner-tl {
+            top: 2px;
+            left: 2px;
+        }
+        .corner-tl::before {
+            top: -4px;
+            left: -2px;
+        }
+        .corner-tr {
+            top: 2px;
+            right: 2px;
+        }
+        .corner-tr::before {
+            top: -4px;
+            right: -2px;
+        }
+        .corner-bl {
+            bottom: 2px;
+            left: 2px;
+        }
+        .corner-bl::before {
+            bottom: -4px;
+            left: -2px;
+        }
+        .corner-br {
+            bottom: 2px;
+            right: 2px;
+        }
+        .corner-br::before {
+            bottom: -4px;
+            right: -2px;
+        }
+
+        /* ─── Основной контейнер ─── */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 55px 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 40px 30px 30px;
+            }
+        }
+
+        .hero {
+            text-align: center;
+            padding: 20px 0 30px;
+            position: relative;
+        }
+
+        .hero .icon-row {
+            font-size: 3.5rem;
+            letter-spacing: 12px;
+            margin-bottom: 8px;
+            animation: gentleFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes gentleFloat {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Marck Script', 'Philosopher', cursive;
+            font-size: clamp(3.2rem, 8vw, 5.5rem);
+            font-weight: 400;
+            color: #c97d60;
+            text-shadow: 2px 2px 8px rgba(180, 120, 90, 0.2);
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+            line-height: 1.2;
+        }
+
+        .hero .tagline {
+            font-family: 'Philosopher', serif;
+            font-size: 1.35rem;
+            font-weight: 400;
+            color: #a88878;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero .decorative-line {
+            display: inline-block;
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #e8b4b8, #d4a574, #e8b4b8, transparent);
+            border-radius: 3px;
+            margin: 10px 0;
+        }
+
+        .day-counter-wrapper {
+            display: flex;
+            justify-content: center;
+            margin: 25px 0 35px;
+        }
+
+        .day-counter {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-radius: 60px;
+            padding: 16px 34px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 12px 30px rgba(180, 140, 120, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+            border: 2px dashed #e8c4b0;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #5c3d2e;
+        }
+
+        .day-counter .days-number {
+            background: linear-gradient(135deg, #f8c4b4, #e8a890);
+            color: #fff;
+            border-radius: 40px;
+            padding: 10px 22px;
+            font-size: 1.7rem;
+            font-weight: 800;
+            min-width: 70px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(200, 130, 100, 0.3);
+        }
+
+        .profile-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0 40px;
+            flex-wrap: wrap;
+        }
+
+        .switch-btn {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid transparent;
+            padding: 15px 36px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #5c3d2e;
+            letter-spacing: 0.5px;
+        }
+
+        .switch-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1);
+        }
+
+        .switch-btn.active-child {
+            border-color: #f0b8a0;
+            background: #fff5f0;
+            color: #c97050;
+            box-shadow: 0 12px 30px rgba(210, 120, 80, 0.2);
+        }
+
+        .switch-btn.active-parent {
+            border-color: #c4a0d0;
+            background: #faf5fc;
+            color: #7b5c8a;
+            box-shadow: 0 12px 30px rgba(150, 100, 170, 0.2);
+        }
+
+        .switch-btn .btn-emoji {
+            font-size: 1.7rem;
+        }
+
+        .profile-cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        .profile-card {
+            flex: 1 1 380px;
+            max-width: 460px;
+            background: var(--card-bg);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-radius: 40px;
+            padding: 35px 30px 30px;
+            box-shadow: 0 20px 45px rgba(140, 100, 80, 0.1), 0 4px 12px rgba(0, 0, 0, 0.04);
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            animation: cardAppear 0.7s ease forwards;
+        }
+
+        .profile-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        @keyframes cardAppear {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 28px 55px rgba(140, 100, 80, 0.16);
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 30px;
+            right: 30px;
+            height: 30px;
+            background:
+                radial-gradient(circle at 20px 16px, transparent 10px, #fbe4d8 11px, #fbe4d8 13px, transparent 14px) repeat-x 0 0 / 40px 30px,
+                radial-gradient(circle at 20px 16px, transparent 8px, #fff 9px, #fff 11px, transparent 12px) repeat-x 20px 0 / 40px 30px;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-bottom: 22px;
+            margin-top: 8px;
+        }
+
+        .avatar-circle {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            border: 4px solid white;
+        }
+
+        .child-avatar {
+            background: linear-gradient(135deg, #ffe0d0, #ffccb8);
+        }
+        .parent-avatar {
+            background: linear-gradient(135deg, #e8ddf0, #dcc8e8);
+        }
+
+        .card-header .name {
+            font-family: 'Philosopher', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #4a3028;
+            letter-spacing: 0.5px;
+        }
+
+        .card-header .subtitle {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #a08070;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .info-blocks {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .info-block {
+            background: rgba(255, 255, 255, 0.65);
+            border-radius: 24px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            border: 1px solid rgba(220, 190, 170, 0.3);
+            transition: all 0.25s ease;
+        }
+
+        .info-block:hover {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: #e0c4b4;
+        }
+
+        .info-block .info-emoji {
+            font-size: 1.8rem;
+            width: 40px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .info-block .info-label {
+            font-weight: 700;
+            color: #8c6b58;
+            margin-right: 4px;
+        }
+        .info-block .info-value {
+            color: #4a3028;
+        }
+
+        .highlight-box {
+            margin-top: 18px;
+            padding: 18px 20px;
+            border-radius: 28px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.4px;
+        }
+
+        .highlight-child {
+            background: linear-gradient(135deg, #fff0e8, #ffe4d6);
+            color: #c97050;
+            border: 1px dashed #e8b8a0;
+        }
+
+        .highlight-parent {
+            background: linear-gradient(135deg, #f9f0fc, #f0e0f8);
+            color: #7b5c8a;
+            border: 1px dashed #c8b0d8;
+        }
+
+        .gallery-section {
+            margin: 55px 0 45px;
+            text-align: center;
+        }
+
+        .gallery-section h2 {
+            font-family: 'Philosopher', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #6b4d3a;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .gallery-section .section-subtitle {
+            font-size: 1rem;
+            color: #a88878;
+            margin-bottom: 28px;
+            font-style: italic;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 18px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1 / 1;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.04);
+            border: 2px solid rgba(240, 210, 190, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.06) rotate(-1deg);
+            box-shadow: 0 18px 38px rgba(180, 130, 100, 0.18);
+            border-color: #e8b8a0;
+            background: rgba(255, 245, 238, 0.9);
+        }
+
+        .gallery-item:active {
+            transform: scale(0.94);
+            transition: all 0.1s ease;
+        }
+
+        .gallery-item .gallery-emoji {
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, rgba(255, 180, 150, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -15px;
+            right: -15px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .quote-block {
+            text-align: center;
+            margin: 50px 0 40px;
+            padding: 35px 30px;
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 45px;
+            border: 2px dashed #e0c8b8;
+            position: relative;
+        }
+
+        .quote-block .quote-text {
+            font-family: 'Marck Script', cursive;
+            font-size: 2.2rem;
+            color: #7b5c4a;
+            line-height: 1.5;
+            letter-spacing: 1px;
+        }
+
+        .quote-block .quote-author {
+            display: block;
+            margin-top: 12px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #b09580;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .quote-block .quote-decor {
+            font-size: 2.5rem;
+            opacity: 0.5;
+            margin: 0 10px;
+        }
+
+        .site-footer {
+            text-align: center;
+            padding: 30px 0 20px;
+            color: #b8a090;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.8px;
+        }
+
+        .site-footer .footer-hearts {
+            font-size: 1.4rem;
+            letter-spacing: 5px;
+            margin-bottom: 6px;
+        }
+
+        .hidden-card {
+            display: none !important;
+        }
+
+        @media (max-width: 600px) {
+            .profile-card {
+                padding: 25px 18px 22px;
+                border-radius: 32px;
+            }
+            .profile-card::before {
+                left: 15px;
+                right: 15px;
+            }
+            .card-header .name {
+                font-size: 1.7rem;
+            }
+            .switch-btn {
+                padding: 12px 22px;
+                font-size: 1rem;
+                gap: 6px;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 12px;
+            }
+            .gallery-item {
+                font-size: 2rem;
+                border-radius: 22px;
+            }
+            .quote-block .quote-text {
+                font-size: 1.6rem;
+            }
+            .lace-border .lace-top,
+            .lace-border .lace-bottom {
+                height: 28px;
+            }
+            .lace-border .lace-left,
+            .lace-border .lace-right {
+                width: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lace-border">
+        <div class="lace-top"></div>
+        <div class="lace-bottom"></div>
+        <div class="lace-left"></div>
+        <div class="lace-right"></div>
+    </div>
+    <div class="lace-corner corner-tl"></div>
+    <div class="lace-corner corner-tr"></div>
+    <div class="lace-corner corner-bl"></div>
+    <div class="lace-corner corner-br"></div>
+
+    <div class="container">
+        <header class="hero">
+            <div class="icon-row">🎨✨🌸</div>
+            <h1>Надежда & Мирослава</h1>
+            <p class="tagline">Творчество • Любовь • Вдохновение</p>
+            <div class="decorative-line"></div>
+        </header>
+
+        <div class="day-counter-wrapper">
+            <div class="day-counter">
+                <span>🌟</span> Вместе уже <span class="days-number" id="daysCount">0</span> дней <span>🌟</span>
+            </div>
+        </div>
+
+        <div class="profile-switcher">
+            <button class="switch-btn active-child" id="childTabBtn">
+                <span class="btn-emoji">👩🏻‍🎨</span> Мирослава
+            </button>
+            <button class="switch-btn" id="parentTabBtn">
+                <span class="btn-emoji">👩🏻‍🦰💜</span> Надежда
+            </button>
+        </div>
+
+        <div class="profile-cards-container">
+            <!-- Карточка Мирославы (художница с русыми волосами) -->
+            <div class="profile-card" id="childCard">
+                <div class="card-header">
+                    <div class="avatar-circle child-avatar">👩🏻‍🎨</div>
+                    <div>
+                        <div class="name">Мирослава</div>
+                        <div class="subtitle">10 лет • Юный художник</div>
+                    </div>
+                </div>
+                <div class="info-blocks">
+                    <div class="info-block">
+                        <span class="info-emoji">🎂</span>
+                        <span><span class="info-label">Возраст:</span> <span class="info-value">10 лет</span></span>
+                    </div>
+                    <div class="info-block">
+                        <span class="info-emoji">🎨</span>
+                        <span><span class="info-label">Мечта:</span> <span class="info-value">Стать известным художником</span></span>
+                    </div>
+                    <div class="info-block">
+                        <span class="info-emoji">🖌️</span>
+                        <span><span class="info-label">Любимое:</span> <span class="info-value">Рисовать акварелью, смешивать краски</span></span>
+                    </div>
+                    <div class="info-block">
+                        <span class="info-emoji">📒</span>
+                        <span><span class="info-label">Всегда с собой:</span> <span class="info-value">Скетчбук и кисточки</span></span>
+                    </div>
+                </div>
+                <div class="highlight-box highlight-child">
+                    ✨ «Когда я рисую, мир становится ярче!» ✨
+                </div>
+            </div>
+
+            <!-- Карточка Надежды (родитель) -->
+            <div class="profile-card hidden-card" id="parentCard">
+                <div class="card-header">
+                    <div class="avatar-circle parent-avatar">👩🏻‍🦰</div>
+                    <div>
+                        <div class="name">Надежда</div>
+                        <div class="subtitle">Мама • Опора и поддержка</div>
+                    </div>
+                </div>
+                <div class="info-blocks">
+                    <div class="info-block">
+                        <span class="info-emoji">💜</span>
+                        <span><span class="info-label">Суперспособность:</span> <span class="info-value">Эмоциональная поддержка</span></span>
+                    </div>
+                    <div class="info-block">
+                        <span class="info-emoji">🫂</span>
+                        <span><span class="info-label">Всегда рядом:</span> <span class="info-value">Выслушает, обнимет, вдохновит</span></span>
+                    </div>
+                    <div class="info-block">
+                        <span class="info-emoji">🌈</span>
+                        <span><span class="info-label">Верит в:</span> <span class="info-value">Талант и мечты Мирославы</span></span>
+                    </div>
+                    <div class="info-block">
+                        <span class="info-emoji">☕</span>
+                        <span><span class="info-label">Ритуал:</span> <span class="info-value">Совместные чаепития после школы</span></span>
+                    </div>
+                </div>
+                <div class="highlight-box highlight-parent">
+                    🌟 «Моя миссия — чтобы её крылья расправились во всю ширь» 🌟
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-section">
+            <h2>🎨 Творческая мастерская</h2>
+            <p class="section-subtitle">Нажми на картинку — и она оживёт</p>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-emoji="🎨"><span class="gallery-emoji">🎨</span></div>
+                <div class="gallery-item" data-emoji="🖌️"><span class="gallery-emoji">🖌️</span></div>
+                <div class="gallery-item" data-emoji="🖼️"><span class="gallery-emoji">🖼️</span></div>
+                <div class="gallery-item" data-emoji="🌈"><span class="gallery-emoji">🌈</span></div>
+                <div class="gallery-item" data-emoji="✨"><span class="gallery-emoji">✨</span></div>
+                <div class="gallery-item" data-emoji="💝"><span class="gallery-emoji">💝</span></div>
+            </div>
+        </div>
+
+        <div class="quote-block">
+            <span class="quote-decor">🌿</span>
+            <span class="quote-text">«Ребёнок — это не сосуд, который нужно наполнить,<br>а огонь, который нужно зажечь.»</span>
+            <span class="quote-decor">🌿</span>
+            <span class="quote-author">— Франсуа Рабле</span>
+        </div>
+
+        <footer class="site-footer">
+            <div class="footer-hearts">💛🌸💛</div>
+            <p>Создано с любовью • Семья Надежды и Мирославы • 2025</p>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            const birthDate = new Date('2015-03-15');
+            const daysCounter = document.getElementById('daysCount');
+
+            function updateDays() {
+                const now = new Date();
+                const diffMs = now - birthDate;
+                const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+                if (daysCounter && diffDays >= 0) {
+                    daysCounter.textContent = diffDays.toLocaleString('ru-RU');
+                }
+            }
+            updateDays();
+
+            const childTabBtn = document.getElementById('childTabBtn');
+            const parentTabBtn = document.getElementById('parentTabBtn');
+            const childCard = document.getElementById('childCard');
+            const parentCard = document.getElementById('parentCard');
+
+            function showChild() {
+                childCard.classList.remove('hidden-card');
+                parentCard.classList.add('hidden-card');
+                childTabBtn.classList.add('active-child');
+                parentTabBtn.classList.remove('active-parent');
+                childCard.style.animation = 'none';
+                childCard.offsetHeight;
+                childCard.style.animation = 'cardAppear 0.7s ease forwards';
+            }
+
+            function showParent() {
+                parentCard.classList.remove('hidden-card');
+                childCard.classList.add('hidden-card');
+                parentTabBtn.classList.add('active-parent');
+                childTabBtn.classList.remove('active-child');
+                parentCard.style.animation = 'none';
+                parentCard.offsetHeight;
+                parentCard.style.animation = 'cardAppear 0.7s ease forwards';
+            }
+
+            childTabBtn.addEventListener('click', showChild);
+            parentTabBtn.addEventListener('click', showParent);
+
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const emojiSpan = this.querySelector('.gallery-emoji');
+                    if (!emojiSpan) return;
+                    const originalEmoji = emojiSpan.textContent;
+                    emojiSpan.textContent = '❤️';
+                    emojiSpan.style.transform = 'scale(1.4)';
+                    this.style.backgroundColor = '#fff0f0';
+                    setTimeout(() => {
+                        emojiSpan.textContent = originalEmoji;
+                        emojiSpan.style.transform = 'scale(1)';
+                        this.style.backgroundColor = '';
+                    }, 550);
+                });
+            });
+
+            console.log('🌸 Сайт обновлён: теперь Мирослава с русыми волосами и палитрой!');
+        })();
+    </script>
+</body>
+</html>
